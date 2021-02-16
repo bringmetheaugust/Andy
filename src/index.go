@@ -2,27 +2,21 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 )
 
-type command struct {
-	title   string
-	command string
+func main() {
+	defer byeBye()
+
+	args := os.Args
+	// var argsP *[]string = &args
+
+	if len(args) == 1 {
+		greetings()
+		os.Exit(0)
+	}
 }
 
-func main() {
-	args := os.Args
-
-	if args[1] == "help" {
-		helpTxt, err := ioutil.ReadFile("./docs/help.txt")
-
-		if err != nil {
-			fmt.Println("pizda..")
-		}
-
-		fmt.Println(string(helpTxt))
-	}
-
-	os.Exit(0)
+func byeBye() {
+	fmt.Println("Bye Bye🛌🏻...")
 }
