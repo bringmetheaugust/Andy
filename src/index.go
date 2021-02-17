@@ -1,22 +1,31 @@
 package main
 
 import (
-	"fmt"
 	"os"
 )
 
+type arg struct {
+}
+
 func main() {
-	defer byeBye()
+	// defer byeBye()
 
-	args := os.Args
-	// var argsP *[]string = &args
+	args := os.Args[1:]
+	var argsP *[]string = &args
 
-	if len(args) == 1 {
+	switch true {
+	case len(*argsP) == 0:
 		greetings()
 		os.Exit(0)
+		// case args[1] == :
+		// 	fmt.Println("Linux.")
+		// default:
+		// 	// freebsd, openbsd,
+		// 	// plan9, windows...
+		// 	fmt.Printf("%s.\n", os)
 	}
 }
 
-func byeBye() {
-	fmt.Println("Bye Bye🛌🏻...")
-}
+// func byeBye() {
+// 	fmt.Println("Bye bye!")
+// }
