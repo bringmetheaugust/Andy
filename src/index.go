@@ -1,11 +1,10 @@
 package main
 
 import (
+	"andy/src/keys"
 	"os"
+	"strings"
 )
-
-type arg struct {
-}
 
 func main() {
 	// defer byeBye()
@@ -13,16 +12,16 @@ func main() {
 	args := os.Args[1:]
 	var argsP *[]string = &args
 
-	switch true {
-	case len(*argsP) == 0:
+	if len(*argsP) == 0 {
 		greetings()
 		os.Exit(0)
-		// case args[1] == :
-		// 	fmt.Println("Linux.")
-		// default:
-		// 	// freebsd, openbsd,
-		// 	// plan9, windows...
-		// 	fmt.Printf("%s.\n", os)
+	}
+
+	switch true {
+	case strings.HasSuffix((*argsP)[0], "--help") || strings.HasSuffix((*argsP)[0], "-h"):
+		keys.Help()
+	case strings.HasSuffix((*argsP)[0], "--version") || strings.HasSuffix((*argsP)[0], "-v"):
+		keys.Version()
 	}
 }
 

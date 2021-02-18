@@ -1,6 +1,7 @@
-package options
+package keys
 
 import (
+	"andy/src/helper"
 	"fmt"
 	"io/ioutil"
 )
@@ -10,7 +11,7 @@ func Help() {
 	helpTxt, err := ioutil.ReadFile("./static/help.txt")
 
 	if err != nil {
-		fmt.Println("pizda..")
+		helper.PanicMessage()
 	}
 
 	fmt.Println(string(helpTxt))

@@ -1,5 +1,5 @@
 Andy's helper🐼
 
 Options:
-    --help help         instruction
+    --help help         instructions
     --version, -v       application version
