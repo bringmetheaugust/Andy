@@ -1,28 +1,30 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
+	"andy/src/keys"
 	"os"
+	"strings"
 )
 
-type command struct {
-	title   string
-	command string
-}
-
 func main() {
-	args := os.Args
+	// defer byeBye()
 
-	if args[1] == "help" {
-		helpTxt, err := ioutil.ReadFile("./docs/help.txt")
+	args := os.Args[1:]
+	var argsP *[]string = &args
 
-		if err != nil {
-			fmt.Println("pizda..")
-		}
-
-		fmt.Println(string(helpTxt))
+	if len(*argsP) == 0 {
+		greetings()
+		os.Exit(0)
 	}
 
-	os.Exit(0)
+	switch true {
+	case strings.HasSuffix((*argsP)[0], "--help") || strings.HasSuffix((*argsP)[0], "-h"):
+		keys.Help()
+	case strings.HasSuffix((*argsP)[0], "--version") || strings.HasSuffix((*argsP)[0], "-v"):
+		keys.Version()
+	}
 }
+
+// func byeBye() {
+// 	fmt.Println("Bye bye!")
+// }
