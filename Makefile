@@ -2,7 +2,7 @@ build_app:
 	@go build -o build/andy ./src/.
 
 deploy_app:
-	@sudo cp ./andy /usr/local/bin
+	@sudo cp ./build/andy /usr/local/bin/
 
 dev:
 	@echo "Restarting..."
