@@ -1,5 +1,0 @@
-Andy's helper🐼
-
-Options:
-    --help help         instructions
-    --version, -v       application version
