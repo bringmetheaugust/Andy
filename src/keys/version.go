@@ -1,7 +1,7 @@
 package keys
 
 import (
-	"andy/src/helper"
+	"andy/src/utils"
 	"fmt"
 	"io/ioutil"
 
@@ -19,7 +19,7 @@ func Version() {
 	yamlFile, err := ioutil.ReadFile("./version.yaml")
 
 	if err != nil {
-		helper.PanicMessage()
+		utils.PanicMessage()
 	}
 
 	yaml.Unmarshal([]byte(yamlFile), &version)

@@ -1,30 +1,29 @@
 package main
 
 import (
+	"andy/src/commands"
 	"andy/src/keys"
+	"andy/src/utils"
 	"os"
-	"strings"
 )
 
 func main() {
-	// defer byeBye()
-
 	args := os.Args[1:]
-	var argsP *[]string = &args
 
-	if len(*argsP) == 0 {
-		greetings()
+	if len(args) == 0 {
+		utils.Greetings()
 		os.Exit(0)
 	}
 
+	firstArg := args[0]
+	var argsP *[]string = &args
+
 	switch true {
-	case strings.HasSuffix((*argsP)[0], "--help") || strings.HasSuffix((*argsP)[0], "-h"):
+	case firstArg == "--help" || firstArg == "-h":
 		keys.Help()
-	case strings.HasSuffix((*argsP)[0], "--version") || strings.HasSuffix((*argsP)[0], "-v"):
+	case firstArg == "--version" || firstArg == "-v":
 		keys.Version()
+	case firstArg == "server":
+		commands.Server.Run((*argsP)[1:])
 	}
 }
-
-// func byeBye() {
-// 	fmt.Println("Bye bye!")
-// }
