@@ -1,11 +1,7 @@
 package keys
 
-import (
-	"andy/src/constants"
-	"fmt"
-)
+import "fmt"
 
-// Help show help (description, list of arguments, options and flags)
 func Help() {
-	fmt.Println(constants.Help)
+	fmt.Println("Andy's helper🐼\n\nOptions:\n  --version, -v       application version")
 }
