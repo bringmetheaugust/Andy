@@ -38,7 +38,13 @@ Download `andy` file from `/build/andy` folder and paste to your OS executible p
    <summary><code>server</code> daemon API</summary>
    <ul>
         <li>
-            <code>GET /docker/ps</code> to get docker containers status (equal to local <code>docker ps -a</code>)
+            <details>
+               <summary><code>GET /docker/ps</code> to get docker containers status (equal to local <code>docker ps -a</code>)</summary>
+               <ul>
+                  <li><code>200</code>: success result</li>
+                  <li><code>406</code>: failed docker daemon info</li>
+               </ul>
+            </details>
         </li>
    </ul>
 </details>

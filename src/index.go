@@ -24,6 +24,6 @@ func main() {
 	case firstArg == "--version" || firstArg == "-v":
 		keys.Version()
 	case firstArg == "server":
-		commands.Server.Run((*argsP)[1:])
+		commands.Server.Start((*argsP)[1:])
 	}
 }
