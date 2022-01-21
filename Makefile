@@ -1,8 +1,8 @@
-OK_RESULT="Fine😌!"
+OK_RESULT="Done😌!"
 
-build_app:
+build:
 	@echo "Building application..."
-	@go build -o build/andy ./src/.
+	@go build -o build/andy ./cmd/andy.go
 	@echo ${OK_RESULT}
 
 deploy_app:
@@ -13,4 +13,4 @@ deploy_app:
 dev:
 	@echo "Restarting..."
 	ulimit -n 1000
-	${GOPATH}/bin/reflex --start-service -r '\.go$$' make build_app
+	${GOPATH}/bin/reflex --start-service -r '\.go$$' make build
