@@ -10,9 +10,6 @@ var CONFIG_FILE string
 
 func init() {
 	// cobra.OnInitialize()
-
-	// rootCMD.PersistentFlags().StringVar(&CONFIG_FILE, "config", "", "config file (default is $HOME/.dadjoke.yaml)")
-	// rootCMD.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
 var rootCmd = &cobra.Command{
