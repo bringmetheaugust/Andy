@@ -2,7 +2,6 @@ package commands
 
 import (
 	"andy/constants"
-	"fmt"
 
 	"github.com/spf13/cobra"
 )
@@ -16,18 +15,15 @@ func init() {
 	// rootCMD.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
-var rootCMD = &cobra.Command{
+var rootCmd = &cobra.Command{
 	Use:   "andy",
-	Short: "As U know, I'm Andy🐼 and I have a lot of funny tools.",
+	Short: "Hi! I'm Andy🐼!\n" + constants.TooltipHelpMessage,
 	CompletionOptions: cobra.CompletionOptions{
 		DisableDefaultCmd: true,
 	},
 	Version: "0.0.1",
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Hi! I'm Andy🐼!\n" + constants.TooltipHelpMessage)
-	},
 }
 
-func ParseCMD() {
-	rootCMD.Execute()
+func ParseCmd() {
+	rootCmd.Execute()
 }

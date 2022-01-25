@@ -4,16 +4,22 @@ import (
 	"fmt"
 	"net/http"
 	"os/exec"
+	"strconv"
 )
 
-// http server to manage docker containers
-func RunDockerServer() {
-	port := "1991" // default port
+func RunDockerHttpServer(port int64) {
+	if port == 0 {
+		port = 1991
+	}
+
+	var httpPort string = strconv.FormatInt(port, 10)
+
+	fmt.Println("Trying to star HTTP docker server on " + httpPort + " port ...")
 
 	http.HandleFunc("/ps", getDockerStatus)
-	http.ListenAndServe(":"+port, nil)
+	http.ListenAndServe(":"+httpPort, nil)
 
-	fmt.Println("Server daemon is running on " + port + " port!")
+	fmt.Println("Server daemon is running on " + httpPort + " port!")
 }
 
 // get docker container's statuses
