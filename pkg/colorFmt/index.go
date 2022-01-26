@@ -2,23 +2,27 @@ package colorFmt
 
 import "fmt"
 
-const colorReset = "\033[0m"
-const colorRed = "\033[31m"
-const colorGreen = "\033[32m"
-const colorYellow = "\033[33m"
-const colorBlue = "\033[34m"
-const colorPurple = "\033[35m"
-const colorCyan = "\033[36m"
-const colorWhite = "\033[37m"
+const (
+	colorReset  = "\033[0m"
+	colorRed    = "\033[31m"
+	colorGreen  = "\033[32m"
+	colorYellow = "\033[33m"
+	colorPurple = "\033[35m"
+	colorBlue   = "\033[36m"
+)
 
 func GreenFmt(str string) {
-	fmt.Println(string(colorGreen), str)
+	fmt.Println(string(colorGreen), str, string(colorReset))
 }
 
 func RedFmt(str string) {
-	fmt.Println(string(colorRed), str)
+	fmt.Println(string(colorRed), str, string(colorReset))
 }
 
 func BlueFmt(str string) {
-	fmt.Println(string(colorBlue), str)
+	fmt.Println(string(colorBlue), str, string(colorReset))
+}
+
+func YellowFmt(str string) {
+	fmt.Println(string(colorYellow), str, string(colorReset))
 }

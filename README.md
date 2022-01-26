@@ -10,36 +10,38 @@ Download `andy` file from `/build/andy` folder and paste to your OS executible p
 
 ## Deploy
 
- ##### Required local packages: `Golang v1.15+`
+ * `make build` build compiled package
+ * `deploy` deploy compiled package to your `/usr/local/bin`
 
- * `make build_app` build compiled package
- * `make dev` run development live server mode with hot reloading
- * `deploy_app` deploy compiled package to your `/usr/local/bin`
+ ##### Required global packages: `Golang v1.17+`
 
 ## Docs
+
+ * #### Commands🎙
+
+    * `docker_http` run [http server](#guides_server) for getting docker containers info.
+
+        * `start` run server (default on [http://localhost:1991]())
+        * `start -p NUMBER` set listening port
+
+    * `init` init package for more friendly usage (generating shell autocomplete)
+
+        * `-s STRING` set shell type for completion (autocomplete)
+
  * #### Options💡
 
     * `--help`, `-h` list of commands, options and flags
     * `--version`, `-v` package version
 
- * #### Commands🎙
-
-    * `server` run http daemon server to serve request info. Server API list [here](#guides_server)
-
-        * `start` run server (default on http://localhost:1991)
-        * `start -p NUMBER` set listening port
-        * `status` get daemon status
-        * `stop` server down
-
 ## Guides
 
 <a name="#guides_server"></a>
 <details>
-   <summary><code>server</code> daemon API</summary>
+   <summary><code>docker http</code> server API</summary>
    <ul>
         <li>
             <details>
-               <summary><code>GET /docker/ps</code> to get docker containers status (equal to local <code>docker ps -a</code>)</summary>
+               <summary><code>GET /ps</code> to get docker containers status (equal to local <code>docker ps -a</code>)</summary>
                <ul>
                   <li><code>200</code>: success result</li>
                   <li><code>406</code>: failed docker daemon info</li>

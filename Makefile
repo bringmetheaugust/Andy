@@ -5,7 +5,7 @@ build:
 	@go build -o build/andy ./cmd/andy.go
 	@echo ${OK_RESULT}
 
-deploy_app:
+deploy:
 	@echo "Moving application to /usr/local/bin/ folder..."
 	@sudo cp ./build/andy /usr/local/bin/
 	@echo ${OK_RESULT}
