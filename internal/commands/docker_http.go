@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"andy/pkg/http_server"
+	"andy/internal/http_server"
 
 	"github.com/spf13/cobra"
 )

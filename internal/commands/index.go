@@ -1,8 +1,6 @@
 package commands
 
 import (
-	"andy/constants"
-
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +12,7 @@ func init() {
 
 var rootCmd = &cobra.Command{
 	Use:   "andy",
-	Short: "Hi! I'm Andy🐼!\n" + constants.TooltipHelpMessage,
+	Short: "Hi! I'm Andy🐼!",
 	CompletionOptions: cobra.CompletionOptions{
 		DisableDefaultCmd: true,
 	},

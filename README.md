@@ -24,6 +24,8 @@ Download `andy` file from `/build/andy` folder and paste to your OS executible p
         * `start` run server (default on [http://localhost:1991]())
         * `start -p NUMBER` set listening port
 
+    * `window` open GUI interface
+
     * `init` init package for more friendly usage (generating shell autocomplete)
 
         * `-s STRING` set shell type for completion (autocomplete)
