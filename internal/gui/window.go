@@ -12,12 +12,13 @@ import (
 func Run() {
 	a := app.New()
 	w := a.NewWindow("Andy GUI")
-	w.Resize(fyne.NewSize(300, 300))
+	icon, _ := fyne.LoadResourceFromURLString("https://svgsilh.com/svg/1300187.svg")
 
-	hello := widget.NewLabel("Commands")
+	a.SetIcon(icon)
+	w.Resize(fyne.NewSize(300, 150))
+
 	w.SetContent(
 		container.NewVBox(
-			hello,
 			widget.NewButton("docker_http", func() {
 				http_server.RunDockerHttpServer(1991)
 			}),

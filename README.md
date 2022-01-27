@@ -6,13 +6,15 @@ Unix CLI package for personal tools.
 
 ## Install
 
-Download `andy` file from `/build/andy` folder and paste to your OS executible path (`/usr/local/bin/` for example).
+Download binary file and paste it to your OS executible path (`/usr/local/bin/` or `/home/$USER/.local/bin` for example).
 
 ## Deploy
 
- * `make build` build compiled package
- * `deploy` deploy compiled package to your `/usr/local/bin`
+ * `make run` to run application (without build)
+ * `make build` to build compiled application
+ * `make deploy` to deploy compiled application to your `/home/$USER/.local/bin` folder
 
+ ##### Run `make` or `make help` to watch all *Makefile* commands
  ##### Required global packages: `Golang v1.17+`
 
 ## Docs
