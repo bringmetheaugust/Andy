@@ -1,19 +1,21 @@
 package commands
 
-import (
-	"andy/internal/gui"
+// doesn't work on Wayland
 
-	"github.com/spf13/cobra"
-)
+// import (
+// 	"andy/internal/gui"
 
-func init() {
-	rootCmd.AddCommand(windowCmd)
-}
+// 	"github.com/spf13/cobra"
+// )
 
-var windowCmd = &cobra.Command{
-	Use:   "window",
-	Short: "Open GUI.",
-	Run: func(cmd *cobra.Command, args []string) {
-		gui.Run()
-	},
-}
+// func init() {
+// 	rootCmd.AddCommand(windowCmd)
+// }
+
+// var windowCmd = &cobra.Command{
+// 	Use:   "window",
+// 	Short: "Open GUI.",
+// 	Run: func(cmd *cobra.Command, args []string) {
+// 		gui.Run()
+// 	},
+// }
