@@ -8,13 +8,13 @@ Unix CLI package for personal tools.
 
 Download binary file and paste it to your OS executible path (`/usr/local/bin/` or `/home/$USER/.local/bin` for example).
 
-## Deploy
+## Development
 
  * `make run` to run application (without build)
  * `make build` to build compiled application
  * `make deploy` to deploy compiled application to your `/home/$USER/.local/bin` folder
 
- ##### Run `make` or `make help` to watch all *Makefile* commands
+ ##### Run `make help` to watch all *Makefile* commands
  ##### Required global packages: `Golang v1.17+`
 
 ## Docs
