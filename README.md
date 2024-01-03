@@ -21,10 +21,12 @@ Download binary file and paste it to your OS executible path (`/usr/local/bin/` 
 
  * #### Commands🎙
 
-    * `docker_http` run [http server](#guides_server) for getting docker containers info.
+    * `docker_http` run [http server](#guides_server) for getting docker containers info
 
         * `start` run server (default on [http://localhost:1991]())
         * `start -p NUMBER` set listening port
+
+    * `graph` build cute graph in terminal
 
     * `window` open GUI interface
 
