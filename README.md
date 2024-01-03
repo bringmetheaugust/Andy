@@ -28,7 +28,7 @@ Download binary file and paste it to your OS executible path (`/usr/local/bin/` 
 
     * `graph` build cute graph in terminal
 
-    * `window` open GUI interface
+    <!-- * `window` open GUI interface -->
 
     * `init` init package for more friendly usage (generating shell autocomplete)
 
