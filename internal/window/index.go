@@ -1,7 +1,7 @@
-package gui
+package window
 
 import (
-	"andy/internal/http_server"
+	"andy/internal/docker_server"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -20,7 +20,7 @@ func Run() {
 	w.SetContent(
 		container.NewVBox(
 			widget.NewButton("docker_http", func() {
-				http_server.RunDockerHttpServer(1991)
+				docker_server.RunDockerHttpServer(1991)
 			}),
 		),
 	)

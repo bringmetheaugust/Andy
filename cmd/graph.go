@@ -9,7 +9,7 @@ import (
 )
 
 func init() {
-	rootCmd.AddCommand(graphStartCmd)
+	RootCmd.AddCommand(graphStartCmd)
 }
 
 var graphStartCmd = &cobra.Command{

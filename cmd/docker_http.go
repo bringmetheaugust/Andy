@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"andy/internal/http_server"
+	"andy/internal/docker_server"
 
 	"github.com/spf13/cobra"
 )
@@ -9,7 +9,7 @@ import (
 const portFlag = "port"
 
 func init() {
-	rootCmd.AddCommand(dockerHTTPCmd)
+	RootCmd.AddCommand(dockerHTTPCmd)
 	dockerHTTPCmd.AddCommand(dockerHTTPStartCmd)
 	dockerHTTPStartCmd.Flags().Int64P(portFlag, "p", 1991, "Set HTTP server port")
 }
@@ -25,6 +25,6 @@ var dockerHTTPStartCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		port, _ := cmd.Flags().GetInt64(portFlag)
 
-		http_server.RunDockerHttpServer(port)
+		docker_server.RunDockerHttpServer(port)
 	},
 }

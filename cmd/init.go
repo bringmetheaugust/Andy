@@ -10,7 +10,7 @@ import (
 const shellFlag = "shell"
 
 func init() {
-	rootCmd.AddCommand(initCmd)
+	RootCmd.AddCommand(initCmd)
 	initCmd.Flags().StringP(shellFlag, "s", "", "Set completion shell type.")
 }
 
