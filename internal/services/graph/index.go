@@ -1,6 +1,10 @@
 package graph
 
-import "fmt"
+import (
+	"andy/internal/components"
+	"fmt"
+	"time"
+)
 
 const maxRange int = 10
 
@@ -12,6 +16,10 @@ func BuildGraph(nums []int) {
 			return
 		}
 	}
+
+	components.Spinner.Start()
+	time.Sleep(2 * time.Second)
+	components.Spinner.Stop()
 
 	for count := maxRange; count > 0; count-- {
 		for _, v := range nums {

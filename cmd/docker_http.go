@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"andy/internal/docker_server"
+	"andy/internal/services/docker_server"
 
 	"github.com/spf13/cobra"
 )

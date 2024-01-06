@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"andy/internal/graph"
+	"andy/internal/services/graph"
 	"andy/pkg/colorFmt"
 	"strconv"
 
