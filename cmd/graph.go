@@ -2,7 +2,7 @@ package commands
 
 import (
 	"andy/internal/services/graph"
-	"andy/pkg/colorFmt"
+	"andy/pkg/colorPrint"
 	"strconv"
 
 	"github.com/spf13/cobra"
@@ -17,7 +17,7 @@ var graphStartCmd = &cobra.Command{
 	Short: "Build graph",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			colorFmt.YellowFmt("There are no arguments. Please, pass some agruments.")
+			colorPrint.YellowPrint("There are no arguments. Please, pass some agruments.")
 
 			return
 		}

@@ -1,7 +1,7 @@
 package docker_server
 
 import (
-	"andy/pkg/colorFmt"
+	"andy/pkg/colorPrint"
 	"net/http"
 	"os/exec"
 	"strconv"
@@ -14,12 +14,12 @@ func RunDockerHttpServer(port int64) {
 
 	var httpPort string = strconv.FormatInt(port, 10)
 
-	colorFmt.BlueFmt("Trying to start HTTP docker server on " + httpPort + " port...")
+	colorPrint.BluePrint("Trying to start HTTP docker server on " + httpPort + " port...")
 
 	http.HandleFunc("/ps", getDockerStatus)
 	http.ListenAndServe(":"+httpPort, nil)
 
-	colorFmt.GreenFmt("Server daemon has been successfully started!")
+	colorPrint.GreenPrint("Server daemon has been successfully started!")
 }
 
 // get docker container's statuses

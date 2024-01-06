@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"andy/pkg/colorFmt"
+	"andy/pkg/colorPrint"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -26,7 +26,7 @@ var initCmd = &cobra.Command{
 
 func generateCompletion(cmd *cobra.Command, shellType string) {
 	if shellType == "" {
-		colorFmt.YellowFmt("You did't set shell type. I'll generate completion for bash shell for U.")
+		colorPrint.YellowPrint("You did't set shell type. I'll generate completion for bash shell for U.")
 
 		shellType = "bash"
 	}
@@ -41,6 +41,6 @@ func generateCompletion(cmd *cobra.Command, shellType string) {
 	case "powershell":
 		cmd.Root().GenPowerShellCompletionWithDesc(os.Stdout)
 	default:
-		colorFmt.RedFmt("U set unknown shell type. I'll skip completion for Your shell.")
+		colorPrint.RedPrint("U set unknown shell type. I'll skip completion for Your shell.")
 	}
 }

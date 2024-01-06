@@ -1,7 +1,7 @@
 package window
 
 import (
-	"andy/internal/docker_server"
+	"andy/internal/services/docker_server"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
