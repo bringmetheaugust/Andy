@@ -30,6 +30,8 @@ Download binary file and paste it to your OS executible path (`/usr/local/bin/` 
 
     * `seabattle` play **Sea battle** game
 
+        * `start` start game
+
     <!-- * `window` open GUI interface -->
 
     * `init` init package for more friendly usage (generating shell autocomplete)

@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-const netGrid int = 10
+const netGrid uint8 = 10
 const cellSymbol string = "* "
 
 type net [netGrid][netGrid]cell
@@ -18,6 +18,7 @@ var alphabet = [...]string{
 }
 var collumnChars = alphabet[:netGrid]
 
+// Print net to CLI from game state
 func (n net) build() {
 	colorPrint.BluePrint("   " + strings.Join(collumnChars[:], " ") + "\n")
 

@@ -7,12 +7,18 @@ import (
 )
 
 func init() {
-	RootCmd.AddCommand(seaBattleStartCmd)
+	RootCmd.AddCommand(seaBattleCMD)
+	seaBattleCMD.AddCommand(seaBattleStartCmd)
+}
+
+var seaBattleCMD = &cobra.Command{
+	Use:   "seabattle",
+	Short: "Play sea battle game.",
 }
 
 var seaBattleStartCmd = &cobra.Command{
-	Use:   "seabattle",
-	Short: "Play sea battle game",
+	Use:   "start",
+	Short: "Start game.",
 	Run: func(cmd *cobra.Command, args []string) {
 		seabattle.StartGame()
 	},

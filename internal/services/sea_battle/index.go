@@ -1,8 +1,24 @@
 package seabattle
 
+import "andy/pkg/colorPrint"
+
 func StartGame() {
-	game := game{}
+	game := game{
+		steps: 10,
+	}
 
 	game.net.build()
-	game.makeStep()
+
+	for {
+		if game.isOver {
+			colorPrint.BluePrint("You lose...\n")
+			break
+		}
+
+		for {
+			if game.makeStep() {
+				break
+			}
+		}
+	}
 }

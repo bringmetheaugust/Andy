@@ -1,5 +1,5 @@
 package seabattle
 
 type cell struct {
-	isChecked bool
+	isChecked bool // Cell is used
 }
