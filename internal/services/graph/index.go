@@ -2,37 +2,40 @@ package graph
 
 import (
 	"andy/internal/components"
+	"andy/pkg/colorPrint"
 	"fmt"
+	"strconv"
 	"time"
 )
 
-const maxRange int = 10
+const maxRange uint8 = 10
 
-func BuildGraph(nums []int) {
+// Print graph to CLI
+func BuildGraph(nums []uint8) {
 	for _, v := range nums {
-		if v > maxRange {
-			fmt.Printf("%v is too big.\n", v)
+		if v > maxRange || v < 0 {
+			colorPrint.RedPrint(strconv.Itoa(int(v)) + " is too big. Please, paste arguments betwwen 0 and " + strconv.Itoa(int(maxRange)) + ".\n")
 
 			return
 		}
 	}
 
 	components.Spinner.Start()
-	time.Sleep(2 * time.Second)
+	time.Sleep(1 * time.Second)
 	components.Spinner.Stop()
 
-	for count := maxRange; count > 0; count-- {
+	for raw := maxRange; raw > 0; raw-- {
 		for _, v := range nums {
 			switch {
-			case count > v:
+			case raw > v:
 				fmt.Printf("***")
-			case count < v:
-				fmt.Printf("| |")
+			case raw < v:
+				colorPrint.BluePrint("| |")
 			default:
-				fmt.Printf("---")
+				colorPrint.BluePrint("╭─╮")
 			}
 		}
 
-		fmt.Printf(" %v\n", count)
+		fmt.Printf(" %v\n", raw)
 	}
 }

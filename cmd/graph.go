@@ -13,20 +13,24 @@ func init() {
 }
 
 var graphStartCmd = &cobra.Command{
-	Use:   "graph",
-	Short: "Build graph",
+	Use:     "graph",
+	Short:   "Build graph. Paste a few arguments as numbers between 0 and 10 for each collumn.",
+	Example: "graph 8 1 2",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			colorPrint.YellowPrint("There are no arguments. Please, pass some agruments.")
+			colorPrint.RedPrint("There are no arguments. Please, pass some agruments.\n")
 
 			return
 		}
 
-		var mapedArr []int
+		var mapedArr []uint8
 
 		for _, v := range args {
-			var ll, _ = strconv.Atoi(v)
-			mapedArr = append(mapedArr, ll)
+			var fInt uint8
+			var i, _ = strconv.Atoi(v)
+
+			fInt = uint8(i)
+			mapedArr = append(mapedArr, fInt)
 		}
 
 		graph.BuildGraph(mapedArr)

@@ -23,7 +23,7 @@ func (g step) requestStepCollumn() uint8 {
 	collumn := uint8(collumnInt)
 
 	if collumn < 0 || collumn > netGrid-1 {
-		colorPrint.RedPrint("Collumn number is out of diapazone. Please, input correct collumn number!\n")
+		colorPrint.RedPrint("Collumn number is out of diapazone. Please, paste correct collumn number!\n")
 		panic("TODO")
 	}
 
@@ -46,7 +46,7 @@ func (g step) requestStepRaw() uint8 {
 	}
 
 	if rawIndex == -1 {
-		colorPrint.RedPrint("Raw number is out of diapazone. Please, input correct raw number!\n")
+		colorPrint.RedPrint("Raw number is out of diapazone. Please, paste correct raw number!\n")
 		panic("TODO")
 	}
 
