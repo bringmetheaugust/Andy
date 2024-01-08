@@ -1,17 +1,38 @@
 package seabattle
 
-import "andy/pkg/colorPrint"
+import (
+	"fmt"
+	"strconv"
+)
+
+const maxStepCount uint8 = 100
 
 func StartGame() {
-	game := game{
-		steps: 10,
+	var stepCountInput string
+
+	fmt.Print("Max step's value is " + strconv.Itoa(int(maxStepCount)) + ". How many steps do U need?: ")
+	fmt.Scanln(&stepCountInput)
+
+	stepCount, err := strconv.Atoi(stepCountInput)
+
+	if err != nil || stepCount <= 0 || uint8(stepCount) > maxStepCount {
+		panic("Plaese, enter correct steps number.")
 	}
 
-	game.net.build()
+	game := game{
+		steps: uint8(stepCount),
+	}
+
+	game.genShips()
+	game.net.build(true)
 
 	for {
 		if game.isOver {
-			colorPrint.BluePrint("You lose...\n")
+			if !game.win {
+				fmt.Println("You lose. Here is a map of a completed battle:")
+				game.net.build(false)
+			}
+
 			break
 		}
 

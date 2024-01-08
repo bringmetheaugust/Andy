@@ -1,6 +1,8 @@
 package commands
 
 import (
+	"andy/constants"
+
 	"github.com/spf13/cobra"
 )
 
@@ -26,7 +28,7 @@ import (
 // }
 
 var RootCmd = &cobra.Command{
-	Short: "Hi! I'm Andy🐼!",
+	Short: "Hi! I'm Andy" + constants.Logo + "!",
 	CompletionOptions: cobra.CompletionOptions{
 		DisableDefaultCmd: true,
 	},
