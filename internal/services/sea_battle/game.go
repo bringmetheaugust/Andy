@@ -2,24 +2,44 @@ package seabattle
 
 import (
 	"andy/pkg/colorPrint"
-	"andy/tools"
-	"math/rand"
+	"fmt"
 	"strconv"
 )
 
 type game struct {
-	net    net   // Array of cells
-	steps  uint8 // Step's count
-	isOver bool  // Game is over
-	win    bool
+	net    net     // Array of cells
+	ships  shipMap // Map of ships
+	steps  uint8   // Step's count
+	isOver bool    // Game is over
+	win    bool    // User game result
 }
 
-// map of ships. key is a ship cell lenght, value is a count of this ship's type
-var ships = map[uint8]uint8{
-	1: 5,
-	// 2: 3,
-	// 3: 2,
-	// 4: 1,
+// Check if all ships are destroyed
+func (g *game) isAllShipsAreDestroyed() bool {
+	var destroyedShipACount int
+
+	for _, ship := range g.ships {
+		if ship.isDestroyed {
+			destroyedShipACount++
+		}
+	}
+
+	if len(g.ships) == destroyedShipACount {
+		return true
+	} else {
+		return false
+	}
+}
+
+// Check steps amount, all ships statuses
+func (g *game) checkGameProcess() {
+	if g.isAllShipsAreDestroyed() {
+		g.win = true
+	}
+
+	if g.steps <= 0 || g.win {
+		g.isOver = true
+	}
 }
 
 // Get info about next step from CLI
@@ -30,6 +50,22 @@ func (g game) requestStep() step {
 	raw := newStep.requestStepRaw()
 
 	return step{collumn, raw}
+}
+
+// Request steps amount from CLI
+func (g *game) requestStepAmount() {
+	var stepCountInput string
+
+	fmt.Print("Max step's value is " + strconv.Itoa(int(maxStepCount)) + ". How many steps do U need?: ")
+	fmt.Scanln(&stepCountInput)
+
+	stepCount, err := strconv.Atoi(stepCountInput)
+
+	if err != nil || stepCount <= 0 || uint8(stepCount) > maxStepCount {
+		panic("Plaese, enter correct steps number.")
+	}
+
+	g.steps = uint8(stepCount)
 }
 
 // Request next step, update net, check main game state.
@@ -45,59 +81,64 @@ func (g *game) makeStep() bool {
 
 		return false
 	} else {
+		currentCell.isChecked = true
+
 		if currentCell.hasShip {
-			currentCell.ship.isDestroyed = true
-		} else {
-
+			g.checkShip(currentCell)
 		}
 
-		(*currentCell).isChecked = true
-		g.net.build(true)
 		g.steps = g.steps - 1
-
-		if g.steps <= 0 {
-			g.isOver = true
-		}
+		g.net.print(true)
+		g.checkGameProcess()
 
 		return true
 	}
 }
 
-// Generate one ship
-// TODO: check if cell is зайнята
-func (g *game) genShip(shipLen uint8) ship {
-	var cellCoordinates []coordinates
+// map ship status and ship's coordinates
+func (g *game) checkShip(selectedCell *cell) {
+	currentShip, ok := g.ships[selectedCell.shipId]
 
-	for i := uint8(0); i < shipLen; i++ {
-		var randRowIndex = rand.Intn(int(netGrid))
-		var randCollumnIndex = rand.Intn(int(netGrid))
-
-		cellCoordinates = append(cellCoordinates, coordinates{
-			row:     uint8(randRowIndex),
-			collumn: uint8(randCollumnIndex),
-		})
+	if !ok {
+		panic("Ship not found.")
 	}
 
-	return ship{
-		id:          tools.GenId(),
-		coordinates: cellCoordinates,
+	var isDestroyed uint8
+	shipCoordinates := currentShip.coordinates
+
+	for _, c := range shipCoordinates {
+		if g.net[c.collumn][c.row].isChecked {
+			isDestroyed++
+		}
+	}
+
+	// check if all ship's cell are selected and mark them as destroyed
+	if len(shipCoordinates) == int(isDestroyed) {
+		for _, c := range shipCoordinates {
+			g.net[c.collumn][c.row].shipStatus = 2
+			currentShip.isDestroyed = true
+		}
+	} else {
+		selectedCell.shipStatus = 1
 	}
 }
 
 // Generate ships and inject them to the net
 func (g *game) genShips() {
 	// map ship list data
-	for shipLen, shipAmount := range ships {
+	for shipLen, shipAmount := range shipsConfig {
 
 		// map each ship by amount
 		for i := uint8(0); i < shipAmount; i++ {
-			newShip := g.genShip(shipLen)
+			newShip := ship{}.New(shipLen)
+			g.ships[newShip.id] = &newShip
 
 			// map ship's coordinates on net
 			for _, coordinate := range newShip.coordinates {
 				g.net[coordinate.collumn][coordinate.row] = cell{
-					hasShip: true,
-					ship:    newShip,
+					hasShip:    true,
+					shipStatus: 0,
+					shipId:     newShip.id,
 				}
 			}
 		}

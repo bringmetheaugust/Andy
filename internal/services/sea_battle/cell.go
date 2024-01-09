@@ -1,18 +1,13 @@
 package seabattle
 
 type cell struct {
-	isChecked bool // Cell is used
-	hasShip   bool // Has a ship
-	ship           // Ship data
+	isChecked  bool // Cell is used
+	hasShip    bool // Has a ship
+	shipId          // shipID
+	shipStatus      // Ship status
 }
 
 type coordinates struct {
-	row     uint8
-	collumn uint8
-}
-
-type ship struct {
-	id          int64
-	isDestroyed bool          // Ship is destroyed
-	coordinates []coordinates // Coordinates of all ship's cells
+	row     uint8 // Row array index
+	collumn uint8 // Collumn array index
 }

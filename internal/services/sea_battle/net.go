@@ -20,22 +20,29 @@ var collumnChars = alphabet[:netGrid]
 
 // Print net to CLI from game state.
 // {isHidden} parameter show all hidden ships (for game over or testing view)
-func (n net) build(isHidden bool) {
+func (n net) print(isHidden bool) {
 	colorPrint.BluePrint("   " + strings.Join(collumnChars[:], " ") + "\n")
 
 	for i, coll := range n {
 		colorPrint.BluePrint(strconv.Itoa(i) + "| ")
 
-		for _, v := range coll {
+		for _, cell := range coll {
 			switch {
-			case v.isChecked && v.hasShip && v.ship.isDestroyed: // destroyed ship
-				colorPrint.RedPrint(cellSymbol)
-			case v.isChecked && v.hasShip: // injured ship
-				colorPrint.YellowPrint(cellSymbol)
-			case isHidden && v.isChecked: // used empty cell
+			case cell.hasShip:
+				switch cell.shipStatus {
+				case 2: // destroyed ship
+					colorPrint.RedPrint(cellSymbol)
+				case 1: // injured ship
+					colorPrint.YellowPrint(cellSymbol)
+				case 0: // surviving part of the ship
+					if !isHidden {
+						colorPrint.GreenPrint(cellSymbol)
+					} else {
+						fmt.Printf(cellSymbol)
+					}
+				}
+			case !cell.hasShip && cell.isChecked: // used empty cell
 				colorPrint.BluePrint(cellSymbol)
-			case !isHidden && v.hasShip && !v.isDestroyed: // surviving part of the ship
-				colorPrint.GreenPrint(cellSymbol)
 			default: //none selected cell
 				fmt.Printf(cellSymbol)
 			}
