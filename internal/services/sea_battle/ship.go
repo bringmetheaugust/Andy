@@ -21,25 +21,23 @@ type ship struct {
 
 // Map of ships. Key is a ship cell lenght, value is a count of this ship's type
 var shipsConfig = map[uint8]uint8{
-	1: 1,
+	1: 5,
 	// 2: 3,
 	// 3: 2,
 	// 4: 1,
 }
 
-// Generate new ship
-// TODO: check if cell is зайнята
-// TODO: build 2/3/4 length ships
+// Generate new ship with random coordinates
+// TODO: generate long ships
 func (s ship) New(shipLen uint8) ship {
 	var cellCoordinates []coordinates
+	var randRowIndex = rand.Intn(int(netGrid))     // entry point for ship's coordinates
+	var randCollumnIndex = rand.Intn(int(netGrid)) // entry point for ship's coordinates
 
 	for i := uint8(0); i < shipLen; i++ {
-		var randRowIndex = rand.Intn(int(netGrid))
-		var randCollumnIndex = rand.Intn(int(netGrid))
-
 		cellCoordinates = append(cellCoordinates, coordinates{
-			row:     uint8(randRowIndex),
-			collumn: uint8(randCollumnIndex),
+			row:     coordinate(randRowIndex),
+			collumn: coordinate(randCollumnIndex),
 		})
 	}
 

@@ -7,11 +7,12 @@ import (
 )
 
 type game struct {
-	net    net     // Array of cells
-	ships  shipMap // Map of ships
-	steps  uint8   // Step's count
-	isOver bool    // Game is over
-	win    bool    // User game result
+	net             net     // Array of cells
+	ships           shipMap // Map of ships
+	steps           uint8   // Step's count
+	isOver          bool    // Game is over
+	win             bool    // User game result
+	shipsAreVisible bool    // Show ships (for dev mode or after finishing battle)
 }
 
 // Check if all ships are destroyed
@@ -88,7 +89,7 @@ func (g *game) makeStep() bool {
 		}
 
 		g.steps = g.steps - 1
-		g.net.print(true)
+		g.net.print(g.shipsAreVisible)
 		g.checkGameProcess()
 
 		return true
@@ -130,7 +131,32 @@ func (g *game) genShips() {
 
 		// map each ship by amount
 		for i := uint8(0); i < shipAmount; i++ {
-			newShip := ship{}.New(shipLen)
+			var tryCount uint8
+			var newShip ship
+
+			// generate ships while it's coordinates are free
+			for {
+				if tryCount > 100 {
+					panic("To many tries to generate ships. Sorry. Try one more time.")
+				}
+
+				var isExisted bool
+				newShip = ship{}.New(shipLen)
+
+				for _, c := range newShip.coordinates {
+					if g.net[c.collumn][c.row].hasShip {
+						isExisted = true
+						break
+					}
+				}
+
+				if !isExisted {
+					break
+				} else {
+					tryCount++
+				}
+			}
+
 			g.ships[newShip.id] = &newShip
 
 			// map ship's coordinates on net

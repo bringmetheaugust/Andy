@@ -7,7 +7,10 @@ type cell struct {
 	shipStatus      // Ship status
 }
 
+// Coordinate type
+type coordinate uint8
+
 type coordinates struct {
-	row     uint8 // Row array index
-	collumn uint8 // Collumn array index
+	row     coordinate // Row array index
+	collumn coordinate // Collumn array index
 }

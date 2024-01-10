@@ -18,9 +18,8 @@ var alphabet = [...]string{
 }
 var collumnChars = alphabet[:netGrid]
 
-// Print net to CLI from game state.
-// {isHidden} parameter show all hidden ships (for game over or testing view)
-func (n net) print(isHidden bool) {
+// Print net to CLI from game state. {shipsAreVisible} parameter show all hidden ships (for game over or testing view)
+func (n net) print(shipsAreVisible bool) {
 	colorPrint.BluePrint("   " + strings.Join(collumnChars[:], " ") + "\n")
 
 	for i, coll := range n {
@@ -35,7 +34,7 @@ func (n net) print(isHidden bool) {
 				case 1: // injured ship
 					colorPrint.YellowPrint(cellSymbol)
 				case 0: // surviving part of the ship
-					if !isHidden {
+					if shipsAreVisible {
 						colorPrint.GreenPrint(cellSymbol)
 					} else {
 						fmt.Printf(cellSymbol)

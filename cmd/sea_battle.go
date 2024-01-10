@@ -9,6 +9,7 @@ import (
 func init() {
 	RootCmd.AddCommand(seaBattleCMD)
 	seaBattleCMD.AddCommand(seaBattleStartCmd)
+	seaBattleCMD.AddCommand(seaBattleStartDevCmd)
 }
 
 var seaBattleCMD = &cobra.Command{
@@ -20,6 +21,14 @@ var seaBattleStartCmd = &cobra.Command{
 	Use:   "start",
 	Short: "Start game.",
 	Run: func(cmd *cobra.Command, args []string) {
-		seabattle.StartGame()
+		seabattle.StartGame(false)
+	},
+}
+
+var seaBattleStartDevCmd = &cobra.Command{
+	Use:   "dev",
+	Short: "Start game with development mode.",
+	Run: func(cmd *cobra.Command, args []string) {
+		seabattle.StartGame(true)
 	},
 }
