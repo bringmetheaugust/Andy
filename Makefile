@@ -9,10 +9,6 @@ run: ## Run application without build
 	@echo "Be carefull! This command does't work with the flags!\n"
 	@go run $(CMD_ROOT_FILE_PATH) $(filter-out $@, $(MAKECMDGOALS))
 
-deploy: ## Deploy compiled application to your `/home/$USER/.local/bin` folder
-	@echo "Moving application to /home/USER/.local/bin/ folder..."
-	@sudo cp ./dist/andy /home/${USER}/.local/bin/ && ${OK_RESULT}
-
 dev: ## Run build during any file changing (dev live mode)
 	@echo "Restarting..."
 	ulimit -n 1000
