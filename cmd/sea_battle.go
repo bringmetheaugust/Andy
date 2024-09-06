@@ -14,7 +14,7 @@ func init() {
 
 var seaBattleCMD = &cobra.Command{
 	Use:   "seabattle",
-	Short: "Play sea battle game.",
+	Short: "Play sea battle game⚓.",
 }
 
 var seaBattleStartCmd = &cobra.Command{

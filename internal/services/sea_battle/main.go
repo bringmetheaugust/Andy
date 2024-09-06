@@ -7,20 +7,20 @@ import (
 const maxStepCount uint8 = 100
 
 func StartGame(withDev bool) {
-	game := game{
+	g := game{
 		ships:           make(shipMap),
 		shipsAreVisible: withDev,
 	}
 
-	game.requestStepAmount()
-	game.genShips()
-	game.net.print(game.shipsAreVisible)
+	g.requestStepAmount()
+	g.genShips()
+	g.net.print(g.shipsAreVisible)
 
 	for {
-		if game.isOver {
-			if !game.win {
+		if g.isOver {
+			if !g.win {
 				fmt.Println("You lose. Here is a map of a completed battle:")
-				game.net.print(true)
+				g.net.print(true)
 			} else {
 				fmt.Println("You win!!")
 			}
@@ -29,7 +29,7 @@ func StartGame(withDev bool) {
 		}
 
 		for {
-			if game.makeStep() {
+			if g.makeStep() {
 				break
 			}
 		}

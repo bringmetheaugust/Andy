@@ -10,12 +10,6 @@ Unix CLI package for personal tools.
 go install andy
 ```
 
-## Development
-
- * `make run` to run application (without build)
- * `make build` to build compiled application
- * `make dev` dev mode
-
  ##### Run `make help` to watch all *Makefile* commands
 
 ## Docs
@@ -27,9 +21,13 @@ go install andy
         * `start` run server (default on [http://localhost:1991]())
         * `start -p NUMBER` set listening port
 
-    * `graph` build cute graph in terminal
+    * `graph` build cute graph📊 in terminal
 
-    * `seabattle` play **Sea battle** game
+    * `seabattle` play **Sea battle⚓** game
+
+        * `start` start game
+
+    * `snake` play **Snake🐍** game
 
         * `start` start game
 
@@ -61,3 +59,9 @@ go install andy
         </li>
    </ul>
 </details>
+
+## Development
+
+ * `make run` to run application (without build)
+ * `make build` to build compiled application
+ * `make dev` dev mode
